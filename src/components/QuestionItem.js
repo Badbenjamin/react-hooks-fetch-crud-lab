@@ -11,12 +11,12 @@ function QuestionItem({ question, handleDelete }) {
   ));
 
   function handleClick() {
-    console.log(id)
-    fetch(`http://localhost:4000/questions/${id}`, {
+    // console.log(question.id)
+    fetch(`http://localhost:4000/questions/${question.id}`, {
       method: "DELETE"
     })
-      .then(response => response.json())
-      .then((deletedItem) => handleDelete(deletedItem))
+      .then((response) => response.json())
+      .then(() => handleDelete(question))
   }
 
   return (

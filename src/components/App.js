@@ -19,8 +19,12 @@ function App() {
     setQuestionArray([...questionArray, newQuestion])
   }
 
-  function handleDelete(deletedItem) {
-    console.log(deletedItem)
+  function handleDelete(deletedQuestion) {
+    console.log(deletedQuestion.id)
+    const updatedQuestionArray = questionArray.filter((question) => {
+      return question.id !== deletedQuestion.id;
+    })
+    setQuestionArray(updatedQuestionArray)
   }
 
   return (
