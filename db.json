@@ -20,7 +20,7 @@
         "props",
         "state"
       ],
-      "correctIndex": 1
+      "correctIndex": 2
     },
     {
       "id": 3,
@@ -42,7 +42,18 @@
         "Webpack",
         "ES6"
       ],
-      "correctIndex": 1
+      "correctIndex": 2
+    },
+    {
+      "prompt": "adfadf",
+      "answers": [
+        "adf",
+        "adf",
+        "adf",
+        "adf"
+      ],
+      "correctIndex": 2,
+      "id": 5
     }
   ]
 }

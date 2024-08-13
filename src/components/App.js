@@ -6,7 +6,7 @@ import QuestionList from "./QuestionList";
 function App() {
   const [page, setPage] = useState("List");
   const [questionArray, setQuestionArray] = useState([])
-  console.log(questionArray)
+  // console.log(questionArray)
 
   useEffect(() => {
     fetch("http://localhost:4000/questions")
@@ -27,10 +27,43 @@ function App() {
     setQuestionArray(updatedQuestionArray)
   }
 
+  function handleUpdate(updatedQuestion, newCorrectIndex){
+    // console.log(updatedQuestion.id, newCorrectIndex)
+    const bodyObj ={
+      ...updatedQuestion,
+      "correctIndex": Number(newCorrectIndex)
+    }
+    // console.log("BO", bodyObj)
+    fetch(`http://localhost:4000/questions/${updatedQuestion.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "accept": "application/json"
+      },
+      body: JSON.stringify(bodyObj)
+    })
+    .then(response => response.json())
+    .then(updatedQuestionData => updateArray(updatedQuestionData))
+    
+  }
+
+  function updateArray(newQuestionData){
+    // console.log(newQuestionData.id)
+
+    const updatedQuestionAnswer = questionArray.map((question) => {
+      if (question.id === newQuestionData.id) {
+        return newQuestionData;
+      } else {
+        return question;
+      }
+    })
+    setQuestionArray(updatedQuestionAnswer)
+  }
+
   return (
     <main>
       <AdminNavBar onChangePage={setPage} />
-      {page === "Form" ? <QuestionForm addNewQuestion={addNewQuestion} /> : <QuestionList handleDelete={handleDelete} questions={questionArray} />}
+      {page === "Form" ? <QuestionForm addNewQuestion={addNewQuestion} /> : <QuestionList handleUpdate={handleUpdate} handleDelete={handleDelete} questions={questionArray} />}
     </main>
   );
 }

@@ -1,11 +1,14 @@
 import React from "react";
 import QuestionItem from "./QuestionItem";
 
-function QuestionList({ questions, handleDelete }) {
-  console.log(questions)
+function QuestionList({ questions, handleDelete, handleUpdate }) {
+
+
+
+  // console.log(questions)
   const questionListElements = questions.map((question) => {
     // console.log(question.id)
-    return <QuestionItem handleDelete={handleDelete} key={question.id} question={question} />
+    return <QuestionItem onUpdate={handleUpdate} handleDelete={handleDelete} key={question.id} question={question} />
   })
 
   return (

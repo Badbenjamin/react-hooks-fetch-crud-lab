@@ -24,7 +24,7 @@ function QuestionForm({ addNewQuestion }) {
     const bodyObj = {
       "prompt": formData.prompt,
       "answers": [formData.answer1, formData.answer2, formData.answer3, formData.answer4],
-      "correctIndex": formData.correctIndex
+      "correctIndex": Number(formData.correctIndex)
     }
     console.log(JSON.stringify(bodyObj))
     fetch("http://localhost:4000/questions", {
